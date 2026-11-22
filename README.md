@@ -15,6 +15,15 @@ Statický web: `index.html` + `css/style.css` + `js/main.js`, bez frameworku, be
 | Nevyužitý potenciál dárků (projekt Eliška). | Blok „Helma jako dárek“. |
 | Slabé SEO (title v angličtině, žádný popis). | Český title, meta description, Open Graph, strukturovaná data. |
 
+## Interaktivní prvky
+
+- **Konfigurátor helmy** (`js/configurator.js`): živý SVG náhled – základní barva, barva motivu, 8 motivů, finiš (lesk/mat/metalíza), plexi, číslo. Tlačítko „Překvap mě“, sdílení odkazem (návrh je uložený v URL) a „Poslat tento návrh“ vloží náhled i parametry do poptávky.
+- **Proces krok za krokem**: sticky fotka, která se mění podle scrollu.
+- **Posuvník výroby**: přetažením se prolínají fáze skořepina → maskování → barva → hotovo.
+- **Hero**: nadpis se skládá po písmenech, fotka se 3D naklání za myší.
+- Magnetická tlačítka, vlastní kurzor (jen myš), ukazatel scrollu, marquee reaguje na směr a rychlost scrollu, swipe v lightboxu.
+- Vše respektuje `prefers-reduced-motion` a funguje i na dotykových zařízeních.
+
 ## TODO pro majitele před spuštěním
 
 1. **E-mail pro poptávky** – v `js/main.js` nastavit `CONTACT_EMAIL` (teď placeholder `info@expose.cz`).

@@ -38,6 +38,7 @@
 
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
+    <div class="progress" id="progress" aria-hidden="true"></div>
     <div class="wrap header__inner">
       <a href="#top" class="brand" aria-label="Expose Designs – domů">
         <img src="assets/img/logo.webp" alt="" width="40" height="40">
@@ -45,8 +46,9 @@
       </a>
       <nav class="nav" id="nav" aria-label="Hlavní menu">
         <a href="#prace">Práce</a>
+        <a href="#konfigurator" class="nav__hot">Navrhni si helmu</a>
         <a href="#sluzby">Služby</a>
-        <a href="#proces">Jak to probíhá</a>
+        <a href="#proces">Proces</a>
         <a href="#atelier">Ateliér</a>
         <a href="#faq">FAQ</a>
         <a href="#poptavka" class="btn btn--sm btn--accent nav__cta">Poptat návrh</a>
@@ -67,8 +69,10 @@
       <div class="wrap hero__grid">
         <div class="hero__copy">
           <p class="eyebrow reveal"><span class="dot"></span>Custom helmet design &amp; painting · CZ</p>
-          <h1 class="hero__title reveal">
-            Helma,<br>která je<br><em>jen tvoje.</em>
+          <h1 class="hero__title" data-split>
+            <span class="line">Helma,</span>
+            <span class="line">která je</span>
+            <span class="line"><em>jen tvoje.</em></span>
           </h1>
           <p class="hero__lead reveal">
             Navrhneme, ručně nalakujeme a znovu složíme. Helmy, kapotáže i nádrže –
@@ -76,7 +80,7 @@
           </p>
           <div class="hero__ctas reveal">
             <a href="#poptavka" class="btn btn--accent btn--lg">Chci nezávazný návrh <i class="arr">→</i></a>
-            <a href="#prace" class="btn btn--ghost btn--lg">Prohlédnout práce</a>
+            <a href="#konfigurator" class="btn btn--ghost btn--lg"><span class="spin" aria-hidden="true">✦</span> Navrhni si helmu online</a>
           </div>
           <ul class="hero__trust reveal">
             <li><b>100 %</b> ruční práce</li>
@@ -86,7 +90,7 @@
         </div>
 
         <figure class="hero__media reveal">
-          <div class="hero__frame">
+          <div class="hero__frame" data-tilt>
             <img src="assets/img/hero-3xl.webp" alt="Ručně lakovaná závodní helma týmu 3XL v červené, bílé a petrolejové" width="1200" height="1800" fetchpriority="high">
           </div>
           <figcaption class="tag">
@@ -162,12 +166,117 @@
       </div>
     </section>
 
+    <!-- ============ CONFIGURATOR ============ -->
+    <section class="section config" id="konfigurator">
+      <div class="wrap">
+        <header class="section__head section__head--split">
+          <div>
+            <p class="kicker mono">02 — Konfigurátor</p>
+            <h2 class="h2 reveal">Navrhni si<br><em>svoji helmu.</em></h2>
+          </div>
+          <p class="section__intro reveal">Naklikej barvy, motiv a číslo. Je to jen první skica – finální design vymyslíme spolu a bude mnohem detailnější. Hotový návrh pošleš jedním klikem.</p>
+        </header>
+
+        <div class="config__grid">
+          <div class="config__stage" id="stage">
+            <div class="config__glow" id="glow" aria-hidden="true"></div>
+            <svg class="helmet" id="helmet" viewBox="0 0 640 480" role="img" aria-labelledby="helmetTitle">
+              <title id="helmetTitle">Náhled navržené helmy</title>
+              <defs>
+                <clipPath id="hClip"><path d="M152 352 C112 296 98 196 164 128 C232 60 372 42 466 84 C536 116 574 170 582 232 C588 272 584 304 572 334 C562 362 540 386 504 394 C470 400 440 392 420 374 C396 352 360 340 318 342 L212 352 C186 354 166 360 152 352 Z"/></clipPath>
+                <radialGradient id="hShade" cx="38%" cy="28%" r="85%">
+                  <stop offset="0" stop-color="#fff" stop-opacity=".14"/>
+                  <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#000" stop-opacity=".6"/>
+                </radialGradient>
+                <linearGradient id="hGlossG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="v-iridium" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#2563eb"/><stop offset=".5" stop-color="#22d3ee"/><stop offset="1" stop-color="#7c3aed"/>
+                </linearGradient>
+                <linearGradient id="v-gold" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#f59e0b"/><stop offset=".5" stop-color="#fde047"/><stop offset="1" stop-color="#ef4444"/>
+                </linearGradient>
+                <linearGradient id="v-smoke" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#2a2d31"/><stop offset="1" stop-color="#0c0d0f"/>
+                </linearGradient>
+                <linearGradient id="v-clear" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#cfe9f0" stop-opacity=".35"/><stop offset="1" stop-color="#8fb7c4" stop-opacity=".25"/>
+                </linearGradient>
+                <pattern id="hChecker" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+                  <rect width="28" height="28" class="pc-b"/><rect width="14" height="14" class="pc-a"/><rect x="14" y="14" width="14" height="14" class="pc-a"/>
+                </pattern>
+                <filter id="hFlake" x="0" y="0" width="100%" height="100%">
+                  <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="4"/>
+                  <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.2 -1.1"/>
+                </filter>
+              </defs>
+              <ellipse cx="360" cy="412" rx="240" ry="16" fill="#000" opacity=".45" class="helmet__shadow"/>
+              <g clip-path="url(#hClip)">
+                <rect width="640" height="480" id="hBase" fill="#e2262c"/>
+                <g id="hPattern"></g>
+                <text id="hNum" x="168" y="304" font-family="Archivo, 'Arial Black', sans-serif" font-weight="900" font-size="90" font-style="italic" letter-spacing="-4">95</text>
+                <rect width="640" height="480" id="hFlakeL" filter="url(#hFlake)" opacity="0"/>
+                <rect width="640" height="480" fill="url(#hShade)" id="hShadeL"/>
+                <path id="hGloss" d="M190 132 C270 76 390 68 470 108 C390 96 280 110 210 168 Z" fill="url(#hGlossG)"/>
+              </g>
+              <path d="M146 342 C166 358 188 356 212 354 L318 344 C360 342 396 354 420 376 C440 394 470 402 504 396 L500 412 C466 418 434 410 410 392 C388 372 356 362 318 364 L212 372 C182 374 160 370 140 356 Z" fill="#141516"/>
+              <path d="M362 150 C432 128 522 138 570 190 C582 212 584 236 578 256 L420 264 C384 258 360 236 356 206 Z" fill="#0b0c0d"/>
+              <path id="hVisor" d="M350 140 C428 112 530 124 582 182 C596 206 598 236 590 262 L572 270 L414 276 C372 270 346 242 346 204 Z" fill="url(#v-iridium)" opacity=".94"/>
+              <path d="M372 150 C440 128 516 134 560 168 C506 150 434 152 380 180 Z" fill="#fff" opacity=".4"/>
+              <circle cx="352" cy="232" r="15" fill="#141516"/><circle cx="352" cy="232" r="5" fill="#3a3d40"/>
+              <g fill="#141516"><rect x="540" y="300" width="30" height="6" rx="3" transform="rotate(-12 555 303)"/><rect x="534" y="314" width="30" height="6" rx="3" transform="rotate(-12 549 317)"/><rect x="526" y="328" width="30" height="6" rx="3" transform="rotate(-12 541 331)"/></g>
+              <path d="M300 66 L340 60 L346 74 L304 80 Z" fill="#141516"/>
+              <g transform="translate(250 330)" opacity=".85"><circle r="11" fill="#0b0c0d"/><text y="5" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="15" fill="#24c3d3">X</text></g>
+            </svg>
+            <p class="config__summary" id="summary" aria-live="polite"></p>
+            <div class="config__tools">
+              <button type="button" class="btn btn--ghost btn--sm" id="randomBtn"><span aria-hidden="true">🎲</span> Překvap mě</button>
+              <button type="button" class="btn btn--ghost btn--sm" id="shareBtn"><span aria-hidden="true">🔗</span> Zkopírovat odkaz</button>
+            </div>
+          </div>
+
+          <div class="config__panel" id="panel">
+            <div class="opt">
+              <p class="opt__label">Základní barva <span id="lblBase"></span></p>
+              <div class="swatches" data-key="base" role="radiogroup" aria-label="Základní barva"></div>
+            </div>
+            <div class="opt">
+              <p class="opt__label">Barva motivu <span id="lblAccent"></span></p>
+              <div class="swatches" data-key="accent" role="radiogroup" aria-label="Barva motivu"></div>
+            </div>
+            <div class="opt">
+              <p class="opt__label">Motiv</p>
+              <div class="seg seg--wrap" data-key="pattern" role="radiogroup" aria-label="Motiv"></div>
+            </div>
+            <div class="opt opt--row">
+              <div>
+                <p class="opt__label">Finiš</p>
+                <div class="seg" data-key="finish" role="radiogroup" aria-label="Finiš"></div>
+              </div>
+              <div>
+                <p class="opt__label">Plexi</p>
+                <div class="seg" data-key="visor" role="radiogroup" aria-label="Plexi"></div>
+              </div>
+            </div>
+            <div class="opt">
+              <label class="opt__label" for="numInput">Tvoje číslo / iniciály</label>
+              <input id="numInput" class="num-input" maxlength="3" value="95" autocomplete="off" spellcheck="false">
+            </div>
+            <a href="#poptavka" class="btn btn--accent btn--lg btn--block" id="sendDesign">Poslat tento návrh <i class="arr">→</i></a>
+            <p class="config__note">Nezávazné. Ozveme se s nápady, jak návrh dotáhnout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ SERVICES ============ -->
     <section class="section section--light" id="sluzby">
       <div class="wrap">
         <header class="section__head section__head--split">
           <div>
-            <p class="kicker mono">02 — Co děláme</p>
+            <p class="kicker mono">03 — Co děláme</p>
             <h2 class="h2 reveal">Od jedné helmy<br>po celý tým.</h2>
           </div>
           <p class="section__intro reveal">Lakujeme hlavně helmy, ale stejnou péči dáváme i kapotážím, nádržím nebo rámům kol. Nevíš, jestli tvůj nápad jde udělat? Napiš – skoro vždycky jde.</p>
@@ -242,40 +351,54 @@
     <section class="section" id="proces">
       <div class="wrap">
         <header class="section__head">
-          <p class="kicker mono">03 — Jak to probíhá</p>
+          <p class="kicker mono">04 — Jak to probíhá</p>
           <h2 class="h2 reveal">Tři kroky.<br>Žádná šablona.</h2>
         </header>
 
-        <ol class="steps">
-          <li class="step reveal">
-            <span class="step__num">01</span>
-            <img src="assets/img/sketch-airoh.webp" alt="Barevné skici návrhů helem" loading="lazy">
-            <h3>Dáme hlavy dohromady</h3>
-            <p>Chceš něco decentního? Divoký motiv? Fotku mazlíčka nebo závodní číslo? Stačí i pár útržků nápadů – zbytek doladíme spolu.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">02</span>
-            <img src="assets/img/helmet-masked.webp" alt="Rozpracovaná helma s maskovací páskou" loading="lazy">
-            <h3>Dáme tomu tvar</h3>
-            <p>Připravíme návrh a pošleme náhled – motivy, barvy, rozložení. Ty řekneš, co změnit. Klidně úplně jiný směr. Lakovat začneme, až když jsi spokojený.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">03</span>
-            <img src="assets/img/spraying-tank.webp" alt="Lakování nádrže stříkací pistolí" loading="lazy">
-            <h3>Rozjedeme to</h3>
-            <p>Helmu rozebereme, zamaskujeme ventilaci a těsnění, obrousíme na čistou skořepinu. Pak ručně, vrstvu po vrstvě. Nakonec finální lak, přeleštění a kompletace.</p>
-          </li>
-        </ol>
+        <div class="proc">
+          <div class="proc__media" aria-hidden="true">
+            <img src="assets/img/sketch-airoh.webp" alt="" class="is-active" data-step="0">
+            <img src="assets/img/helmet-masked.webp" alt="" data-step="1">
+            <img src="assets/img/spraying-tank.webp" alt="" data-step="2">
+            <span class="proc__count mono"><b id="procNow">01</b> / 03</span>
+          </div>
+          <ol class="proc__steps">
+            <li class="proc__step is-active" data-step="0">
+              <span class="step__num">01</span>
+              <img src="assets/img/sketch-airoh.webp" alt="Barevné skici návrhů helem" loading="lazy">
+              <h3>Dáme hlavy dohromady</h3>
+              <p>Chceš něco decentního? Divoký motiv? Fotku mazlíčka nebo závodní číslo? Stačí i pár útržků nápadů – zbytek doladíme spolu. Klidně začni v <a class="link" href="#konfigurator">konfigurátoru</a>.</p>
+            </li>
+            <li class="proc__step" data-step="1">
+              <span class="step__num">02</span>
+              <img src="assets/img/helmet-masked.webp" alt="Rozpracovaná helma s maskovací páskou" loading="lazy">
+              <h3>Dáme tomu tvar</h3>
+              <p>Připravíme návrh a pošleme náhled – motivy, barvy, rozložení. Ty řekneš, co změnit. Klidně úplně jiný směr. Lakovat začneme, až když jsi spokojený.</p>
+            </li>
+            <li class="proc__step" data-step="2">
+              <span class="step__num">03</span>
+              <img src="assets/img/spraying-tank.webp" alt="Lakování nádrže stříkací pistolí" loading="lazy">
+              <h3>Rozjedeme to</h3>
+              <p>Helmu rozebereme, zamaskujeme ventilaci a těsnění, obrousíme na čistou skořepinu. Pak ručně, vrstvu po vrstvě. Nakonec finální lak, přeleštění a kompletace.</p>
+            </li>
+          </ol>
+        </div>
 
         <div class="quality reveal">
           <p class="quality__quote">„Žádné přetahy, šmouhy ani zalepená ventilace. Je to časově náročné – ale právě proto výsledek nejen skvěle vypadá, ale i perfektně funguje.“</p>
-          <div class="quality__strip">
-            <img src="assets/img/helmet-primer.webp" alt="Helma obroušená na skořepinu" loading="lazy">
-            <img src="assets/img/helmet-masking.webp" alt="Maskování helmy před lakováním" loading="lazy">
-            <img src="assets/img/helmet-red-base.webp" alt="Helma po nanesení červené barvy" loading="lazy">
-            <img src="assets/img/3xl-on-bike.webp" alt="Hotová helma na motorce" loading="lazy">
+          <div class="scrub" id="scrub">
+            <div class="scrub__frame">
+              <img src="assets/img/helmet-primer.webp" alt="Helma obroušená na skořepinu" loading="lazy">
+              <img src="assets/img/helmet-masking.webp" alt="Maskování helmy před lakováním" loading="lazy">
+              <img src="assets/img/helmet-red-base.webp" alt="Helma po nanesení červené barvy" loading="lazy">
+              <img src="assets/img/3xl-on-bike.webp" alt="Hotová helma na motorce" loading="lazy">
+              <span class="scrub__hint mono">↔ Posuň a sleduj, jak helma vzniká</span>
+            </div>
+            <input type="range" min="0" max="3" step="0.01" value="0" class="scrub__range" id="scrubRange" aria-label="Fáze výroby helmy">
+            <div class="scrub__labels mono">
+              <button type="button" data-v="0">Skořepina</button><button type="button" data-v="1">Maskování</button><button type="button" data-v="2">Barva</button><button type="button" data-v="3">Hotovo</button>
+            </div>
           </div>
-          <div class="quality__labels mono"><span>Skořepina</span><span>Maskování</span><span>Barva</span><span>Hotovo</span></div>
         </div>
       </div>
     </section>
@@ -285,7 +408,7 @@
       <div class="wrap">
         <header class="section__head section__head--split">
           <div>
-            <p class="kicker mono">04 — Galerie</p>
+            <p class="kicker mono">05 — Galerie</p>
             <h2 class="h2 reveal">Z dílny.</h2>
           </div>
           <div class="filters" role="tablist" aria-label="Filtr galerie">
@@ -324,7 +447,7 @@
     <section class="about" id="atelier">
       <div class="about__img"><img src="assets/img/studio.webp" alt="Ruční malování helmy v dílně" loading="lazy"></div>
       <div class="about__body">
-        <p class="kicker mono">05 — Ateliér</p>
+        <p class="kicker mono">06 — Ateliér</p>
         <h2 class="h2 reveal">Z&nbsp;koníčku<br>řemeslo.</h2>
         <p class="reveal">Studio vzniklo během covidu. Zavřený doma a bez možnosti jezdit jsem zamířil tam, kde jsem mohl tvořit – do dílny. Začalo to rámy kol a motocyklovými plasty. Experimenty vystřídala zkušenost a s každým projektem rostla chuť dělat to naplno.</p>
         <p class="reveal">Srdcem všeho se staly helmy – spojení designu, řemesla a precizní práce. Jsem celoživotní motorkář a pořád mě to baví stejně jako na začátku: ve studiu, s barvou v ruce a hlavou plnou nápadů.</p>
@@ -349,7 +472,7 @@
     <section class="section" id="faq">
       <div class="wrap faq">
         <header>
-          <p class="kicker mono">06 — Časté otázky</p>
+          <p class="kicker mono">07 — Časté otázky</p>
           <h2 class="h2 reveal">Než napíšeš.</h2>
           <p class="section__intro">Nenašel jsi odpověď? Napiš nám na Instagram nebo přes formulář níže.</p>
         </header>
@@ -386,7 +509,7 @@
     <section class="contact" id="poptavka">
       <div class="wrap contact__grid">
         <div class="contact__intro">
-          <p class="kicker mono">07 — Poptávka</p>
+          <p class="kicker mono">08 — Poptávka</p>
           <h2 class="h2 h2--contact">Pojďme vymyslet <em>tvůj originál.</em></h2>
           <p>Vyplň pár řádků – ozveme se s návrhem dalšího postupu. Nezávazně a zdarma.</p>
           <ul class="contact__steps">
@@ -424,6 +547,15 @@
               <label><input type="radio" name="styl" value="Zatím nevím" checked><span>Zatím nevím</span></label>
             </div>
           </fieldset>
+          <div class="form__design field--full" id="formDesign" hidden>
+            <div class="form__thumb" id="formThumb"></div>
+            <div>
+              <span class="mono">Tvůj návrh z konfigurátoru</span>
+              <strong id="formDesignText"></strong>
+              <a href="#konfigurator" class="link">Upravit</a> · <button type="button" class="linkbtn" id="formDesignRemove">Odebrat</button>
+            </div>
+            <input type="hidden" name="navrh" id="navrhField">
+          </div>
           <label class="field field--full">
             <span>Tvůj nápad</span>
             <textarea name="napad" rows="4" placeholder="Např. AGV K6, matná černá, tenké tyrkysové linky a moje číslo 27…"></textarea>
@@ -476,6 +608,8 @@
     </div></div>
   </footer>
 
+  <div class="cursor" id="cursor" aria-hidden="true"><span>Zobrazit</span></div>
+
   <!-- mobile sticky CTA -->
   <a href="#poptavka" class="sticky-cta" id="stickyCta">Chci originální helmu <i class="arr">→</i></a>
 
@@ -487,6 +621,7 @@
     <button class="lightbox__nav lightbox__next" aria-label="Další">→</button>
   </div>
 
+  <script src="js/configurator.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
