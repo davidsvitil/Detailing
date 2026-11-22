@@ -99,6 +99,7 @@
 
   /* ---------- render ---------- */
   let popT;
+  let lastPaint = null;
   function render(pop, user = true) {
     const b = COLORS[state.base].hex;
     let a = COLORS[state.accent].hex;
@@ -142,6 +143,17 @@
     if (document.activeElement !== els.numInput) els.numInput.value = state.num;
 
     els.summary.textContent = describe();
+
+    // data pro 3D náhled (js/helmet3d.js)
+    lastPaint = {
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="1280" height="960">
+        <defs><pattern id="hChecker" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+          <rect width="28" height="28" fill="${c === '#141516' ? '#141516' : '#f2f0eb'}"/><rect width="14" height="14" fill="${a}"/><rect x="14" y="14" width="14" height="14" fill="${a}"/></pattern></defs>
+        <rect width="640" height="480" fill="${b}"/>${PATTERNS[state.pattern].svg(a, b, c)}</svg>`,
+      num: state.num, numFill, numStroke: lum(numFill) > .35 ? '#141516' : '#f2f0eb',
+      finish: state.finish, visor: state.visor, base: b,
+    };
+    document.dispatchEvent(new CustomEvent('helmet:change', { detail: lastPaint }));
     if (user) history.replaceState(null, '', `#konfigurator?${encode()}`);
 
     if (pop) {
@@ -188,6 +200,7 @@
 
   // náhled návrhu do formuláře
   const toImg = () => {
+    if (window.exposeHelmet3d?.snapshot) { const shot = window.exposeHelmet3d.snapshot(); if (shot) return shot; }
     const clone = svg.cloneNode(true);
     clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     clone.removeAttribute('class');
@@ -195,6 +208,7 @@
     // inline styly z JS (fill/opacity/filter) jsou součástí klonu
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(clone))}`;
   };
+  window.exposeHelmetPaint = () => lastPaint;
   window.exposeDesign = {
     attach() {
       $('formDesign').hidden = false;

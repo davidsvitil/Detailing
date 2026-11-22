@@ -1,7 +1,11 @@
 # Expose Designs – redesign webu
 
 Návrh nového webu pro [expose.cz](https://www.expose.cz) (zakázkové lakování helem a racing livery).
-Statický web: `index.html` + `css/style.css` + `js/main.js`, bez frameworku, bez buildu. Stačí otevřít `index.html`.
+Statický web: `index.html` + `css/style.css` + `js/`, bez buildu. three.js je přibalené v `js/vendor` (MIT licence).
+
+**Živá verze:** https://davidsvitil.github.io/Detailing/ (GitHub Pages z větve `gh-pages`).
+
+Lokálně spouštěj přes server (`python3 -m http.server`), ne dvojklikem – 3D modul se přes `file://` nenačte a zobrazí se 2D záloha.
 
 ## Proč by měl přivést víc zákazníků
 
@@ -17,7 +21,7 @@ Statický web: `index.html` + `css/style.css` + `js/main.js`, bez frameworku, be
 
 ## Interaktivní prvky
 
-- **Konfigurátor helmy** (`js/configurator.js`): živý SVG náhled – základní barva, barva motivu, 8 motivů, finiš (lesk/mat/metalíza), plexi, číslo. Tlačítko „Překvap mě“, sdílení odkazem (návrh je uložený v URL) a „Poslat tento návrh“ vloží náhled i parametry do poptávky.
+- **Konfigurátor helmy** (`js/configurator.js` + `js/helmet3d.js`): realistická 3D helma (three.js, fyzikální materiály – lesk s čirým lakem, mat, metalíza, duhové iridium plexi), otáčení tažením. Bez WebGL se zobrazí 2D SVG verze. Ovládání – základní barva, barva motivu, 8 motivů, finiš (lesk/mat/metalíza), plexi, číslo. Tlačítko „Překvap mě“, sdílení odkazem (návrh je uložený v URL) a „Poslat tento návrh“ vloží náhled i parametry do poptávky.
 - **Proces krok za krokem**: sticky fotka, která se mění podle scrollu.
 - **Posuvník výroby**: přetažením se prolínají fáze skořepina → maskování → barva → hotovo.
 - **Hero**: nadpis se skládá po písmenech, fotka se 3D naklání za myší.
